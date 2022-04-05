@@ -150,7 +150,7 @@ final confirmNameEditingController = TextEditingController();
                SizedBox(
                  height:250,
                 child:Image.asset(
-                  "assets/Mero Shop.png",
+                  "assets/meroshop.png",
                 fit: BoxFit.contain,
                 )),
                const SizedBox(height:45),

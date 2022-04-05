@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopkeeper_khata/inc/bottombar.dart';
+
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({ Key? key }) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,90 +19,63 @@ class _HomeScreenState extends State<HomeScreen> {
     const Center(child:Text('Details',style:TextStyle(fontSize:60))),
 
   ];*/
-  Widget build(BuildContext context) {
-    final Size size =MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(title:const Text("Welcome",
-      style: TextStyle(
-        color: Colors.red,
-        fontWeight: FontWeight.w500,
-      ),),
-     centerTitle:true,
-      ),
-  backgroundColor:const Color.fromARGB(255, 177, 166, 166),
-  body:Stack(
-    children: [
-      Positioned(
-        bottom:0,
-        left:0,
-        child:SizedBox(
-         width:size.width,
-         height:80,
-         child:Stack(
-         children :[
-           CustomPaint(
-             size:Size(size.width, 80),
-             painter: BNBCustomPainter(),
-           ),
-           Center(
-           heightFactor: 0.6,
-           child:FloatingActionButton(onPressed:() {},
-           backgroundColor:Colors.orange,
-           child:const Icon(Icons.shopping_basket),elevation: 0.1 ,),
-             ),
-           SizedBox(
-             width:size.width,
-             height:60,
-             child:
-            
-             Row(
-               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               children:[
-                 IconButton(icon: const Icon(Icons.home),
-                onPressed:() {}),
-                 IconButton(icon:const Icon(Icons.sell_outlined),
-                onPressed:() {}), 
-                  Container(width: size.width*0.20,),
-                 IconButton(icon:const Icon(Icons.credit_card),
-                onPressed:() {}),
-                 IconButton(icon:const Icon(Icons.details_outlined),
-                onPressed:() {}),
-               ],
-               ),
-               )
-         ],
-         )
-        )
 
-      )
-    ],
-  )
-      
-    );
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "BCA",
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          centerTitle: true,
+        ),
+        backgroundColor: const Color.fromARGB(255, 177, 166, 166),
+        // ignore: unnecessary_new
+        drawer: new Drawer(
+          child: Container(
+            color: Colors.green,
+            height: MediaQuery.of(context).size.height,
+            child: Column(children: const [Text("HEllo im Drawer")]),
+          ),
+        ),
+        body: Stack(
+          children: [
+            Positioned(
+                bottom: 0,
+                left: 0,
+                child:
+                    SizedBox(width: size.width, height: 80, child: const Bottombar()))
+          ],
+        ));
   }
 }
-class BNBCustomPainter extends CustomPainter{
+
+class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-  Paint paint = Paint()..color = Colors.white..style = PaintingStyle.fill;
-  Path path = Path()..moveTo(0,20);
-  path.quadraticBezierTo(size.width*0.20, 0, size.width*0.35, 0);
-  path.quadraticBezierTo(size.width*0.40, 0, size.width*0.40, 20);
-  path.arcToPoint(Offset(size.width*0.60,20),
-  radius:const Radius.circular(10.0),clockwise: false);
-   path.quadraticBezierTo(size.width*0.60, 0, size.width*0.65, 0);
-  path.quadraticBezierTo(size.width*0.80, 0, size.width, 20);
-  path.lineTo(size.width,size.height);
-  path.lineTo(0,size.height);
-  path.close();
-  canvas.drawShadow(path,Colors.black,5,true);
-  canvas.drawPath(path, paint);
+    Paint paint = Paint()
+       ..color = Colors.red
+      ..style = PaintingStyle.fill;
+    Path path = Path()..moveTo(0, 20);
+    path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
+    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
+    path.arcToPoint(Offset(size.width * 0.60, 20),
+        radius: const Radius.circular(10.0), clockwise: false);
+    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
+    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    canvas.drawShadow(path, Colors.black, 5, true);
+    canvas.drawPath(path, paint);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
-  
-
 }
