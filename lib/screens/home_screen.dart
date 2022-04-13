@@ -51,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: size.width, height: 80, child: const Bottombar()))
           ],
         ));
+        
   }
 }
 
