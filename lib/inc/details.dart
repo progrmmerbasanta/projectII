@@ -1,65 +1,107 @@
 import 'package:flutter/material.dart';
-import '../widgets/info_card.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-// our data
-const url = "Basanta Karki.me";
-const email = "basantakarki948@gmail.com";
-const phone = "9816929844";
-const location = "Damak, Jhapa";
-
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.blueGrey[800],
-        body: SafeArea(
-          minimum: const EdgeInsets.only(top: 50),
-          child: Column(
-            children: <Widget>[
-              const CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage('assets/basanta.jpg'),
-              ),
-            
-              const Text(
-                "Basanta Karki ",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Pacifico",
-                ),
-              ),
-              Text(
-                "Passionate Learner",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blueGrey[200],
-                    letterSpacing: 2.5,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Source Sans Pro"),
-              ),
-              const SizedBox(
-                height: 20,
-                width: 200,
-                child: Divider(
-                  color: Colors.white,
-                ),
-              ),
-              
-              // we will be creating a new widget name info carrd
+  State<ProfilePage> createState() => _ProfilePageState();
+}
 
-              InfoCard(text: phone, icon: Icons.phone, onPressed: () async {}),
-              InfoCard(text: url, icon: Icons.web, onPressed: () async {}),
-              InfoCard(
-                  text: location,
-                  icon: Icons.location_city,
-                  onPressed: () async {}),
-              InfoCard(text: email, icon: Icons.email, onPressed: () async {}),
-            ],
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Passionate Learner"),
+        ),
+        backgroundColor: Colors.purple,
+        body: SafeArea(
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const CircleAvatar(
+                  radius: 90,
+                  backgroundColor: Color.fromARGB(255, 151, 180, 182),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/basanta.jpg'),
+                    radius: 80,
+                  ),
+                ),
+                const Text(
+                  'BASANTA KARKI',
+                  style: TextStyle(
+                    fontFamily: 'SourceSansPro',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32.0,
+                    color: Colors.black,
+                  ),
+                ),
+                const Text(
+                  'MOBILE APP DEVELOPER',
+                  style: TextStyle(
+                    fontFamily: 'SourceSansPro',
+                    fontSize: 15,
+                    letterSpacing: 2.5,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+                Container(
+                  width: 300.0,
+                  margin: const EdgeInsets.symmetric(vertical: 1.0),
+                  child: const Divider(
+                    color: Color.fromARGB(255, 219, 1, 1),
+                  ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => launch(
+                      'mailto:basantakarki948@gmail.com?subject=Check My New App at appstore &body=Namaste '),
+                  icon: const Icon(
+                    // <-- Icon
+                    Icons.mail,
+                    size: 30.0,
+                  ),
+                  label: const Text(
+                    'basantakarki948@gmail.com',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => launch("tel://+9779816929844"),
+                  icon: const Icon(
+                    // <-- Icon
+                    Icons.phone,
+                    size: 24.0,
+                  ),
+                  label: const Text(
+                    '+9779816929844',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => MapsLauncher.launchCoordinates(
+                      26.651940781032597, 87.63421140250861, 'I am here'),
+                  icon: const Icon(
+                    // <-- Icon
+                    Icons.location_city,
+                    size: 24.0,
+                  ),
+                  label: const Text(
+                    'Damak,Jhapa',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
