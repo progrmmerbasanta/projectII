@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             color: Colors.green,
             height: MediaQuery.of(context).size.height,
-            child: Column(children: const [Text("HEllo im Drawer")]),
+            child: Column(children: const [Text("Menu Bar ")]),
           ),
         ),
         body: Stack(

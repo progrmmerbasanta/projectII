@@ -3,6 +3,7 @@ import 'package:shopkeeper_khata/inc/buydetails.dart';
 import 'package:shopkeeper_khata/inc/cart.dart';
 import 'package:shopkeeper_khata/inc/credit.dart';
 import 'package:shopkeeper_khata/inc/details.dart';
+import 'package:shopkeeper_khata/inc/homepage.dart';
 
 import '../screens/home_screen.dart';
 
@@ -46,7 +47,7 @@ class _BottombarState extends State<Bottombar> {
                   icon: const Icon(Icons.home),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        MaterialPageRoute(builder: (context) => const HomePage()));
                   }),
               IconButton(
                   icon: const Icon(Icons.sell_outlined),

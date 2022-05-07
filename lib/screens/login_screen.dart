@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final emailField = TextFormField( 
       autofocus: false,
-      controller: emailController,
+     // controller: emailController,
       keyboardType: TextInputType.emailAddress,
       onSaved:(vaue)
       {
@@ -28,10 +28,23 @@ class _LoginScreenState extends State<LoginScreen> {
         hintText: "Email",
         border:OutlineInputBorder(
         ),
-    )) ;
+        errorStyle:
+        TextStyle(color:Colors.redAccent,
+        fontSize:15),
+    ),
+    controller:emailController,
+validator:(value){
+  if(value==null|| value.isEmpty){
+    return 'Please Enter Email';
+  } else if(!value.contains('@')){
+    return 'Please Enter Valid Email';
+  }
+  return null;
+} ,
+    );
     final passwordField = TextFormField(
       autofocus: false,
-      controller: passwordController,
+     // controller: passwordController,
       obscureText:true ,
       onSaved:(vaue)
       {
@@ -45,7 +58,18 @@ class _LoginScreenState extends State<LoginScreen> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-        ));
+          errorStyle:
+          const TextStyle(color:Colors.redAccent,
+        fontSize: 15  ), 
+        ),
+        controller : passwordController,
+          validator:(value){
+            if(value==null || value.isEmpty){
+              return 'Please Enter Password';
+            }
+            return null;
+          }
+        );
         // ignore: non_constant_identifier_names
         final LoginButton= Material(
           elevation: 5,
