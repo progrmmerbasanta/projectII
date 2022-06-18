@@ -138,8 +138,6 @@ class _Credit extends State<Credit> {
                       const SizedBox(
                         height: 35,
                       ),
-
-                      // #signup_button
                       MaterialButton(
                         onPressed: (){},
                         height: 45,
@@ -160,10 +158,12 @@ class _Credit extends State<Credit> {
                       const SizedBox(
                         height: 30,
                       ),
-
+              
                       // #buttons(facebook & github)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      Wrap(
+                      
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        direction: Axis.horizontal,
                         children: [
                           MaterialButton(
                             onPressed: () {},
@@ -176,6 +176,7 @@ class _Credit extends State<Credit> {
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
+                      
                           MaterialButton(
                             onPressed: () {},
                             color: Colors.red,
@@ -187,6 +188,7 @@ class _Credit extends State<Credit> {
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
+                        
                           MaterialButton(
                             onPressed: () {},
                             color: Colors.black,
@@ -200,6 +202,7 @@ class _Credit extends State<Credit> {
                           ),
                         ],
                       ),
+                  
                     ],
                   ),
                 ),

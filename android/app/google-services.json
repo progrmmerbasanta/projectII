@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "703827675534",
+    "project_id": "shopkeeper-e04db",
+    "storage_bucket": "shopkeeper-e04db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703827675534:android:042dac21dc707dfea9fcdf",
+        "android_client_info": {
+          "package_name": "com.example.shopkeeper_khata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703827675534-n5aqov7p37n01m5vmcvcbrffiihtj21a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopkeeper_khata",
+            "certificate_hash": "ca9cea795f09d29e0aea9a1b4f3b0da6f910b6c5"
+          }
+        },
+        {
+          "client_id": "703827675534-eh2igott3ommbsdbpiq7odqpm4thipr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi4SCizeYw7GxKFVRiygqORCXgTYsEzYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703827675534-eh2igott3ommbsdbpiq7odqpm4thipr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

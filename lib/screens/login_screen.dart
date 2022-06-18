@@ -1,22 +1,37 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shopkeeper_khata/screens/home_screen.dart';
+//import 'psckage:http/http.dart'as http;
 import 'package:shopkeeper_khata/screens/registration_screen.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen ({ Key? key }) : super(key: key);
   @override
- _LoginScreenState createState() =>_LoginScreenState();
+ _LoginScreenState createState() =>_LoginScreenState();                        
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formkey = GlobalKey<FormState>();
   final TextEditingController emailController =  TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  //firebase
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     final emailField = TextFormField( 
       autofocus: false,
      // controller: emailController,
       keyboardType: TextInputType.emailAddress,
+      validator:(value){
+        if(value!.isEmpty){
+       return ("Please Enter your Email");
+      }
+      if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value))
+      {
+      return ("Please Enter a valid email");
+      }
+      return null;
+  },
       onSaved:(vaue)
       {
         emailController.text =vaue!;
@@ -25,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
       decoration: const InputDecoration(
         prefixIcon:Icon(Icons.mail),
         contentPadding:EdgeInsets.fromLTRB(20,15,20,15),
-        hintText: "Email",
+        hintText: "Email",                                         
         border:OutlineInputBorder(
         ),
         errorStyle:
@@ -33,19 +48,30 @@ class _LoginScreenState extends State<LoginScreen> {
         fontSize:15),
     ),
     controller:emailController,
-validator:(value){
+/*validator:(value){
   if(value==null|| value.isEmpty){
     return 'Please Enter Email';
   } else if(!value.contains('@')){
     return 'Please Enter Valid Email';
   }
   return null;
-} ,
+} ,*/
     );
     final passwordField = TextFormField(
       autofocus: false,
      // controller: passwordController,
       obscureText:true ,
+      validator:(value){
+        RegExp regex =  RegExp(r'^.{7,}$');
+        if(value!.isEmpty)
+        {
+          return("Password is required for login");
+        }
+        if(!regex.hasMatch(value)){
+          return ("Enter Valid Password(Min.6 Character");
+        }
+        return null;
+      },
       onSaved:(vaue)
       {
         passwordController.text =vaue!;
@@ -63,12 +89,12 @@ validator:(value){
         fontSize: 15  ), 
         ),
         controller : passwordController,
-          validator:(value){
+         /* validator:(value){
             if(value==null || value.isEmpty){
               return 'Please Enter Password';
             }
             return null;
-          }
+          }*/
         );
         // ignore: non_constant_identifier_names
         final LoginButton= Material(
@@ -78,7 +104,7 @@ validator:(value){
           child:MaterialButton(
             padding: const EdgeInsets.fromLTRB(20, 15, 20, 15) ,
             minWidth:MediaQuery.of(context).size.width,
-         onPressed:() {
+         onPressed:() {signIn(emailController.text, passwordController.text);
             Navigator.push(
                       context,
                        MaterialPageRoute(
@@ -96,8 +122,8 @@ validator:(value){
       backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
+        // ignore: avoid_unnecessary_containers
         child: Container(
-          color: Colors.white,
           child:Padding(
             padding: const EdgeInsets.all(36.0),
             child: Form(
@@ -149,6 +175,20 @@ validator:(value){
       ),
     );
   }
+  //login function
+void signIn(String email ,String password)async
+{
+  if(_formkey.currentState!.validate())
+{
+await _auth.signInWithEmailAndPassword(email: email, password:password)
+.then((uid) => {
+  Fluttertoast.showToast(msg: "Login Successfully"),
+  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen())),
+}).catchError((e)
+{
+  Fluttertoast.showToast(msg: e!.message);
+});
 }
-
+}
+}
 

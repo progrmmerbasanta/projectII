@@ -23,9 +23,8 @@ class _HomePageState extends State<HomePage> {
           crossAxisCount: 2,
           padding: const EdgeInsets.all(3.0),
           children: <Widget>[
-            makeDashboardItem("Sell Detais", Icons.sell_outlined),
+            makeDashboardItem("Sell Detais",Icons.sell_outlined),
             makeDashboardItem("Buy Details", Icons.shopping_cart),
-
             makeDashboardItem("Credit Details", Icons.credit_card),
             makeDashboardItem("About US", Icons.details_outlined),
           ],
